@@ -1,0 +1,14 @@
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+
+fields:
+  env: "${SERVICE_ENV}"
+
+processors:
+- add_cloud_metadata: ~
+
+output.logstash:
+  enabled: true
+  hosts: ["${LOGSTASH_HOST}"]
